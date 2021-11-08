@@ -1,4 +1,7 @@
+
+<%=Spree.t(first_name) @contact.first_name %>
+<%=Spree.t(last_name) @contact.last_name %>
 <%= @contact.message %>
 
 -------------------------------------
-<%= SpreeContactUs.require_name ? Spree.t(:sent_by_name, :email => @contact.email, :name => @contact.name) : Spree.t(:sent_by_contact_form, :email => @contact.email) %>
+<%= SpreeContactUs.require_name ? Spree.t(:sent_by_name, :email => @contact.email, :name => @contact.name) : Spree.t(:sent_by_contact_form, :email => @contact.email) %>, <%= @contact.first_name %> <%= @contact.last_name %>
