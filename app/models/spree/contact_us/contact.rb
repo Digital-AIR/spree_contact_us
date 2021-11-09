@@ -4,7 +4,7 @@ module Spree
       include ActiveModel::Conversion
       include ActiveModel::Validations
 
-      attr_accessor :email, :message, :name, :subject
+      attr_accessor :email, :message, :first_name, :last_name, :subject
 
       EMAIL_REGEX = /\A
         [^\s@]+ # non-at-sign characters, at least one
@@ -19,11 +19,13 @@ module Spree
       validates :email,   presence: true
       validates :email,   format: { with: EMAIL_REGEX }, if: -> { email.present? }
       validates :message, presence: true
-      validates :name,    presence: { if: proc { SpreeContactUs.require_name } }
+      validates :first_name, presence: true
+      validates :last_name, presence: true
+      # validates :name,    presence: { if: proc { SpreeContactUs.require_name } }
       validates :subject, presence: { if: proc { SpreeContactUs.require_subject } }
 
       def initialize(attributes = {})
-        %i[email message name subject].each do |attribute|
+        %i[email message first_name last_name subject].each do |attribute|
           send("#{attribute}=", attributes[attribute]) if attributes&.key?(attribute)
         end
       end
