@@ -1,4 +1,4 @@
-class Spree::ContactUs::ContactsController < Spree::StoreController
+class Spree::ContactUs::ContactsController < Spree::BaseController
   helper 'spree/products'
   def create
     @contact = Spree::ContactUs::Contact.new(params[:contact_us_contact])
